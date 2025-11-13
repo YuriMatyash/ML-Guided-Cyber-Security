@@ -17,6 +17,8 @@ credentials/sessions and take over business ad/social accounts. The
 point is to make money - either by running paid ads with the victim's
 stolen money or by selling the stolen accounts.
 
+![Sequence of events](Chart.jpg)
+
 ## <u>Tactics, Techniques and the Behavior</u>
 Here's a comprehensive list of the tactic, technique used
 and the observed behavior order by the sequence of the events.
