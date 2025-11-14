@@ -8,8 +8,8 @@ For all the official main materials, please visit the main course's repository -
 
 
 ## ✒️ Authors/Contributors  
-* Yuri Matyash - [GitHub](https://github.com/YuriMatyash)  
-* Bar Sberro - [GitHub](https://github.com/BarDev1999)  
+* Yuri Matyash - [GitHub](https://github.com/YuriMatyash) | [Linkedin](https://www.linkedin.com/in/yuri-matyash-a4953230b/)  
+* Bar Sberro - [GitHub](https://github.com/BarDev1999) | [Linkedin](https://www.linkedin.com/in/bar-sberro/)  
 * Sagi Pichon -  [GitHub](https://github.com/Sagi-Pichon)  
 * Guy Dazanshvili - [GitHub](https://github.com/GuyDaz)  
 
