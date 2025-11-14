@@ -23,7 +23,7 @@ We work with real threat reports, security logs, network data, and NLP-based thr
 
 | Lab | Assignment | Solution | Topic | Description |
 |---|---|---|---|---|
-| 1 | [Lab1 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab1) |[Lab1](https://github.com/YuriMatyash/ML-Guided-Cyber-Security/tree/main/Labs/Lab1) | Cyber Threat Intelligence (CTI) Report Mapping to MITRE ATT&CK | Choosing a real-world Cyber Threat Intelligence (CTI) report, analyzing the described attack, and mapping its behaviors to MITRE ATT&CK tactics and techniques.
+| 1 | [Lab1 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab1) |[Lab1](https://github.com/YuriMatyash/ML-Guided-Cyber-Security/blob/main/Labs/Lab1/lab1.md) | Cyber Threat Intelligence (CTI) Report Mapping to MITRE ATT&CK | Choosing a real-world Cyber Threat Intelligence (CTI) report, analyzing the described attack, and mapping its behaviors to MITRE ATT&CK tactics and techniques.
 | 2 | [Lab2 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab2) |[Lab2]() | (To be added) | (To be added) |
 
 
