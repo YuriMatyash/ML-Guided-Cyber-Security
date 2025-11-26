@@ -39,12 +39,12 @@ def generate_attack_traffic(timestamp, ip, country_code):
     return {
         'timestamp': timestamp,
         'src_ip': ip,
-        'user_agent': random.choice(attack_user_agents) if random.random() > 0.3 else fake.chrome(),
+        'user_agent': random.choice(attack_user_agents) if random.random() > 0.5 else fake.chrome(),
         'http_method': 'POST',
         'endpoint': '/login',
-        'status_code': 401,
-        'response_bytes': random.randint(200, 500),
-        'request_duration_ms': random.randint(5, 50),
+        'status_code': 403 if random.random() > 0.1 else 200,
+        'response_bytes': random.randint(200, 500) if random.random() > 0.5 else random.randint(1500, 5000),
+        'request_duration_ms': random.randint(5, 50) if random.random() > 0.5 else random.randint(100, 800),
         'geo_location': country_code,
         'label': 'Attack'
     }
@@ -85,6 +85,6 @@ print(df['label'].value_counts())
 print("\nSample Attack Burst:")
 print(df[df['label']=='Attack'].head(10))
 
-df.to_csv('dataset.csv', index=False)
+df.to_csv('Labs/Lab2/dataset.csv', index=False)
 
 print("File saved successfully as 'dataset.csv'")

@@ -7,16 +7,6 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 00:11:33.000,222.114.147.17,"Mozilla/5.0 (Windows 95) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/17.0.890.0 Safari/531.0",POST,/login,200,2136,320,RS,Normal
 2023-11-15 00:14:35.000,207.200.7.191,Mozilla/5.0 (Android 2.1; Mobile; rv:6.0) Gecko/6.0 Firefox/6.0,POST,/login,200,2970,452,RU,Normal
 2023-11-15 00:17:00.000,28.213.82.112,"Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/531.0 (KHTML, like Gecko) CriOS/16.0.806.0 Mobile/60J647 Safari/531.0",POST,/login,200,3696,227,QA,Normal
-2023-11-15 00:19:21.072,192.168.25.1,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.2 (KHTML, like Gecko) Chrome/36.0.895.0 Safari/534.2",POST,/login,401,470,37,Unknown,Attack
-2023-11-15 00:19:21.101,192.168.25.1,Nikto/2.1.6,POST,/login,401,203,14,Unknown,Attack
-2023-11-15 00:19:21.195,192.168.25.1,"Mozilla/5.0 (iPad; CPU iPad OS 17_2_1 like Mac OS X) AppleWebKit/535.2 (KHTML, like Gecko) CriOS/39.0.892.0 Mobile/06Q395 Safari/535.2",POST,/login,401,440,30,Unknown,Attack
-2023-11-15 00:19:21.252,192.168.25.1,"Mozilla/5.0 (Windows NT 11.0) AppleWebKit/531.2 (KHTML, like Gecko) Chrome/46.0.830.0 Safari/531.2",POST,/login,401,419,16,Unknown,Attack
-2023-11-15 00:19:21.330,192.168.25.1,python-requests/2.28,POST,/login,401,424,47,Unknown,Attack
-2023-11-15 00:19:21.396,192.168.25.1,"Mozilla/5.0 (Linux; Android 4.2.2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/61.0.873.0 Safari/535.1",POST,/login,401,381,32,Unknown,Attack
-2023-11-15 00:19:21.406,192.168.25.1,curl/7.68.0,POST,/login,401,256,17,Unknown,Attack
-2023-11-15 00:19:21.452,192.168.25.1,"Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_11_0) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/36.0.895.0 Safari/533.0",POST,/login,401,402,31,Unknown,Attack
-2023-11-15 00:19:21.504,192.168.25.1,curl/7.68.0,POST,/login,401,301,35,Unknown,Attack
-2023-11-15 00:19:21.599,192.168.25.1,python-requests/2.28,POST,/login,401,415,36,Unknown,Attack
 2023-11-15 00:20:23.000,10.132.216.46,"Mozilla/5.0 (iPad; CPU iPad OS 5_1_1 like Mac OS X) AppleWebKit/532.1 (KHTML, like Gecko) FxiOS/10.9q1699.0 Mobile/19B399 Safari/532.1",POST,/login,200,4074,733,GH,Normal
 2023-11-15 00:23:38.000,10.30.138.198,"Mozilla/5.0 (Windows NT 5.2) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/13.0.885.0 Safari/533.0",POST,/login,200,1687,777,VC,Normal
 2023-11-15 00:25:44.000,48.229.28.185,"Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/535.1 (KHTML, like Gecko) CriOS/15.0.847.0 Mobile/40B164 Safari/535.1",POST,/login,200,2453,203,TG,Normal
@@ -112,16 +102,6 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 04:19:13.000,198.5.27.165,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_10_9) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/14.0.890.0 Safari/531.0",POST,/login,200,3365,524,EC,Normal
 2023-11-15 04:21:02.000,18.227.99.112,"Mozilla/5.0 (Linux; Android 2.3.7) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/62.0.814.0 Safari/531.0",POST,/login,200,3136,349,TZ,Normal
 2023-11-15 04:22:27.000,83.80.30.202,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_2) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/24.0.893.0 Safari/533.0",POST,/login,403,4575,209,VA,Normal
-2023-11-15 04:23:09.014,192.168.99.99,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/55.0.868.0 Safari/532.0",POST,/login,401,298,14,Unknown,Attack
-2023-11-15 04:23:09.078,192.168.99.99,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/63.0.853.0 Safari/536.2",POST,/login,401,302,10,Unknown,Attack
-2023-11-15 04:23:09.094,192.168.99.99,masscan/1.0,POST,/login,401,356,49,Unknown,Attack
-2023-11-15 04:23:09.185,192.168.99.99,curl/7.68.0,POST,/login,401,372,32,Unknown,Attack
-2023-11-15 04:23:09.256,192.168.99.99,"Mozilla/5.0 (iPhone; CPU iPhone OS 4_3_5 like Mac OS X) AppleWebKit/531.2 (KHTML, like Gecko) CriOS/41.0.862.0 Mobile/26G491 Safari/531.2",POST,/login,401,418,46,Unknown,Attack
-2023-11-15 04:23:09.272,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,401,386,22,Unknown,Attack
-2023-11-15 04:23:09.326,192.168.99.99,curl/7.68.0,POST,/login,401,363,8,Unknown,Attack
-2023-11-15 04:23:09.359,192.168.99.99,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_4) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/47.0.870.0 Safari/531.0",POST,/login,401,226,47,Unknown,Attack
-2023-11-15 04:23:09.410,192.168.99.99,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_12_8) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/43.0.837.0 Safari/532.0",POST,/login,401,441,22,Unknown,Attack
-2023-11-15 04:23:09.497,192.168.99.99,"Mozilla/5.0 (iPad; CPU iPad OS 17_4 like Mac OS X) AppleWebKit/532.0 (KHTML, like Gecko) CriOS/31.0.897.0 Mobile/72C742 Safari/532.0",POST,/login,401,294,21,Unknown,Attack
 2023-11-15 04:26:14.000,113.170.111.124,Mozilla/5.0 (Windows 95; bem-ZM; rv:1.9.1.20) Gecko/5036-08-21 18:34:07 Firefox/3.8,POST,/login,200,4350,630,AU,Normal
 2023-11-15 04:30:21.000,52.101.219.157,Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_4; rv:1.9.3.20) Gecko/2569-08-29 23:44:05 Firefox/9.0,POST,/login,200,4974,224,AD,Normal
 2023-11-15 04:34:24.000,25.108.242.244,Mozilla/5.0 (Windows NT 5.2; mhr-RU; rv:1.9.1.20) Gecko/6174-10-02 23:09:15 Firefox/3.6.7,POST,/login,200,3675,672,SV,Normal
@@ -141,16 +121,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 05:11:47.000,210.249.117.11,"Mozilla/5.0 (Linux; Android 2.2) AppleWebKit/533.1 (KHTML, like Gecko) Chrome/23.0.813.0 Safari/533.1",POST,/login,200,3687,127,EG,Normal
 2023-11-15 05:15:18.000,150.243.72.219,"Mozilla/5.0 (Linux; Android 2.3.1) AppleWebKit/535.0 (KHTML, like Gecko) Chrome/40.0.884.0 Safari/535.0",POST,/login,200,1843,758,CZ,Normal
 2023-11-15 05:19:07.000,170.55.224.46,"Mozilla/5.0 (iPhone; CPU iPhone OS 1_1_5 like Mac OS X) AppleWebKit/532.0 (KHTML, like Gecko) FxiOS/10.8h3866.0 Mobile/75B354 Safari/532.0",POST,/login,200,1705,366,VN,Normal
-2023-11-15 05:19:39.011,192.168.99.99,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/52.0.862.0 Safari/532.2",POST,/login,401,313,29,KP,Attack
-2023-11-15 05:19:39.034,192.168.99.99,python-requests/2.28,POST,/login,401,289,38,KP,Attack
-2023-11-15 05:19:39.083,192.168.99.99,Nikto/2.1.6,POST,/login,401,248,38,KP,Attack
-2023-11-15 05:19:39.137,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,401,482,22,KP,Attack
-2023-11-15 05:19:39.224,192.168.99.99,"Mozilla/5.0 (Linux; Android 4.3.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/37.0.895.0 Safari/535.1",POST,/login,401,224,15,KP,Attack
-2023-11-15 05:19:39.274,192.168.99.99,Nikto/2.1.6,POST,/login,401,292,27,KP,Attack
-2023-11-15 05:19:39.370,192.168.99.99,masscan/1.0,POST,/login,401,482,43,KP,Attack
-2023-11-15 05:19:39.431,192.168.99.99,curl/7.68.0,POST,/login,401,332,5,KP,Attack
-2023-11-15 05:19:39.528,192.168.99.99,curl/7.68.0,POST,/login,401,264,14,KP,Attack
-2023-11-15 05:19:39.586,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,401,227,45,KP,Attack
+2023-11-15 05:19:39.011,192.168.99.99,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/52.0.862.0 Safari/532.2",POST,/login,403,1930,12,KP,Attack
+2023-11-15 05:19:39.043,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,403,248,49,KP,Attack
+2023-11-15 05:19:39.126,192.168.99.99,masscan/1.0,POST,/login,403,1696,498,KP,Attack
+2023-11-15 05:19:39.159,192.168.99.99,"Mozilla/5.0 (Linux; Android 4.3.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/37.0.895.0 Safari/535.1",POST,/login,403,472,30,KP,Attack
+2023-11-15 05:19:39.230,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,200,279,14,KP,Attack
+2023-11-15 05:19:39.288,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,200,389,20,KP,Attack
+2023-11-15 05:19:39.384,192.168.99.99,Nikto/2.1.6,POST,/login,403,439,22,KP,Attack
+2023-11-15 05:19:39.448,192.168.99.99,curl/7.68.0,POST,/login,403,356,420,KP,Attack
+2023-11-15 05:19:39.469,192.168.99.99,python-requests/2.28,POST,/login,403,284,10,KP,Attack
+2023-11-15 05:19:39.515,192.168.99.99,Nikto/2.1.6,POST,/login,403,3236,13,KP,Attack
 2023-11-15 05:22:31.000,141.61.13.1,Mozilla/5.0 (Windows NT 5.0; lij-IT; rv:1.9.2.20) Gecko/2530-08-20 05:46:52 Firefox/3.8,POST,/login,200,2882,488,MX,Normal
 2023-11-15 05:25:03.000,115.12.156.81,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.1 (KHTML, like Gecko) Chrome/42.0.884.0 Safari/536.1",POST,/login,200,2533,183,MW,Normal
 2023-11-15 05:29:13.000,148.153.22.150,"Mozilla/5.0 (iPad; CPU iPad OS 17_2_1 like Mac OS X) AppleWebKit/533.1 (KHTML, like Gecko) FxiOS/18.8u4858.0 Mobile/72W269 Safari/533.1",POST,/login,200,2933,329,TL,Normal
@@ -185,6 +165,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 06:45:59.000,51.249.153.141,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/25.0.846.0 Safari/533.0",POST,/login,200,1920,112,BB,Normal
 2023-11-15 06:48:34.000,158.106.213.180,Mozilla/5.0 (X11; Linux i686; rv:1.9.5.20) Gecko/3404-11-15 17:55:35 Firefox/3.8,POST,/login,200,2255,152,TN,Normal
 2023-11-15 06:50:53.000,98.200.4.107,"Mozilla/5.0 (iPhone; CPU iPhone OS 2_2_1 like Mac OS X) AppleWebKit/533.2 (KHTML, like Gecko) CriOS/52.0.846.0 Mobile/74C982 Safari/533.2",POST,/login,200,4867,166,GY,Normal
+2023-11-15 06:52:09.025,192.168.99.99,"Mozilla/5.0 (iPhone; CPU iPhone OS 4_3_5 like Mac OS X) AppleWebKit/531.2 (KHTML, like Gecko) CriOS/41.0.862.0 Mobile/26G491 Safari/531.2",POST,/login,200,274,731,CN,Attack
+2023-11-15 06:52:09.060,192.168.99.99,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_4) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/47.0.870.0 Safari/531.0",POST,/login,200,2755,19,CN,Attack
+2023-11-15 06:52:09.098,192.168.99.99,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_12_8) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/43.0.837.0 Safari/532.0",POST,/login,403,226,375,CN,Attack
+2023-11-15 06:52:09.154,192.168.99.99,"Mozilla/5.0 (iPad; CPU iPad OS 17_4 like Mac OS X) AppleWebKit/532.0 (KHTML, like Gecko) CriOS/31.0.897.0 Mobile/72C742 Safari/532.0",POST,/login,403,2810,16,CN,Attack
+2023-11-15 06:52:09.169,192.168.99.99,"Mozilla/5.0 (Linux; Android 4.0.2) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/61.0.827.0 Safari/536.2",POST,/login,403,2668,721,CN,Attack
+2023-11-15 06:52:09.191,192.168.99.99,"Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_8_4) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/32.0.839.0 Safari/531.0",POST,/login,403,2869,199,CN,Attack
+2023-11-15 06:52:09.286,192.168.99.99,"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_5 like Mac OS X) AppleWebKit/535.1 (KHTML, like Gecko) CriOS/25.0.854.0 Mobile/59C131 Safari/535.1",POST,/login,403,369,470,CN,Attack
+2023-11-15 06:52:09.371,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,403,3893,208,CN,Attack
+2023-11-15 06:52:09.397,192.168.99.99,masscan/1.0,POST,/login,403,297,556,CN,Attack
+2023-11-15 06:52:09.419,192.168.99.99,"Mozilla/5.0 (Windows 98) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/17.0.831.0 Safari/535.1",POST,/login,403,4471,306,CN,Attack
 2023-11-15 06:54:28.000,36.13.202.151,Mozilla/5.0 (Windows CE; crh-UA; rv:1.9.0.20) Gecko/9161-08-30 16:40:09 Firefox/10.0,POST,/login,200,4311,154,AL,Normal
 2023-11-15 06:55:55.000,205.171.126.224,"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_5 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) FxiOS/11.1d4138.0 Mobile/50B948 Safari/536.1",POST,/login,200,2744,187,MZ,Normal
 2023-11-15 06:58:12.000,10.135.228.8,"Mozilla/5.0 (iPhone; CPU iPhone OS 12_5_7 like Mac OS X) AppleWebKit/533.1 (KHTML, like Gecko) FxiOS/17.3o6845.0 Mobile/65R939 Safari/533.1",POST,/login,200,3983,710,TH,Normal
@@ -338,16 +328,6 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 13:18:39.000,151.159.128.57,Mozilla/5.0 (Android 3.2.5; Mobile; rv:55.0) Gecko/55.0 Firefox/55.0,POST,/login,200,3968,253,MN,Normal
 2023-11-15 13:21:39.000,111.170.3.32,Mozilla/5.0 (X11; Linux i686; rv:1.9.7.20) Gecko/6935-05-19 23:37:32 Firefox/3.8,POST,/login,200,2932,417,HU,Normal
 2023-11-15 13:25:09.000,184.144.164.82,Mozilla/5.0 (Android 2.3.7; Mobile; rv:5.0) Gecko/5.0 Firefox/5.0,POST,/login,200,1847,417,MV,Normal
-2023-11-15 13:28:36.100,192.168.99.99,Nikto/2.1.6,POST,/login,401,381,34,Unknown,Attack
-2023-11-15 13:28:36.174,192.168.99.99,"Mozilla/5.0 (Windows NT 6.0) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/14.0.837.0 Safari/531.0",POST,/login,401,419,38,Unknown,Attack
-2023-11-15 13:28:36.213,192.168.99.99,python-requests/2.28,POST,/login,401,356,31,Unknown,Attack
-2023-11-15 13:28:36.263,192.168.99.99,python-requests/2.28,POST,/login,401,239,20,Unknown,Attack
-2023-11-15 13:28:36.284,192.168.99.99,"Mozilla/5.0 (Windows 98; Win 9x 4.90) AppleWebKit/536.0 (KHTML, like Gecko) Chrome/14.0.866.0 Safari/536.0",POST,/login,401,229,10,Unknown,Attack
-2023-11-15 13:28:36.330,192.168.99.99,Nikto/2.1.6,POST,/login,401,205,32,Unknown,Attack
-2023-11-15 13:28:36.426,192.168.99.99,curl/7.68.0,POST,/login,401,445,36,Unknown,Attack
-2023-11-15 13:28:36.501,192.168.99.99,masscan/1.0,POST,/login,401,263,30,Unknown,Attack
-2023-11-15 13:28:36.512,192.168.99.99,python-requests/2.28,POST,/login,401,417,49,Unknown,Attack
-2023-11-15 13:28:36.590,192.168.99.99,curl/7.68.0,POST,/login,401,470,48,Unknown,Attack
 2023-11-15 13:30:05.000,108.150.236.12,Mozilla/5.0 (X11; Linux x86_64; rv:1.9.5.20) Gecko/3437-12-17 05:31:06 Firefox/3.8,POST,/login,200,4830,230,TD,Normal
 2023-11-15 13:34:44.000,106.93.78.193,Mozilla/5.0 (Android 12.1; Mobile; rv:34.0) Gecko/34.0 Firefox/34.0,POST,/login,200,3582,470,SL,Normal
 2023-11-15 13:35:03.000,142.9.145.107,Mozilla/5.0 (X11; Linux i686; rv:1.9.5.20) Gecko/9494-10-14 20:39:50 Firefox/3.8,POST,/login,200,2377,449,AT,Normal
@@ -430,6 +410,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 17:04:12.000,201.7.5.200,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/52.0.865.0 Safari/536.2",POST,/login,200,2914,508,UY,Normal
 2023-11-15 17:05:28.000,43.153.197.69,"Mozilla/5.0 (iPad; CPU iPad OS 17_2 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) CriOS/50.0.853.0 Mobile/40Z630 Safari/536.1",POST,/login,200,1934,426,LS,Normal
 2023-11-15 17:07:41.000,7.206.8.226,Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_4; rv:1.9.4.20) Gecko/4914-10-27 20:02:35 Firefox/3.6.11,POST,/login,200,2515,244,TM,Normal
+2023-11-15 17:08:15.048,45.22.11.9,"Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_11_0) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/36.0.895.0 Safari/533.0",POST,/login,403,337,549,KP,Attack
+2023-11-15 17:08:15.142,45.22.11.9,curl/7.68.0,POST,/login,403,202,303,KP,Attack
+2023-11-15 17:08:15.166,45.22.11.9,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/536.1 (KHTML, like Gecko) Chrome/17.0.889.0 Safari/536.1",POST,/login,200,4547,132,KP,Attack
+2023-11-15 17:08:15.196,45.22.11.9,Nikto/2.1.6,POST,/login,403,260,663,KP,Attack
+2023-11-15 17:08:15.269,45.22.11.9,curl/7.68.0,POST,/login,403,404,29,KP,Attack
+2023-11-15 17:08:15.295,45.22.11.9,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/531.1 (KHTML, like Gecko) Chrome/48.0.899.0 Safari/531.1",POST,/login,403,2137,113,KP,Attack
+2023-11-15 17:08:15.392,45.22.11.9,"Mozilla/5.0 (iPad; CPU iPad OS 16_7_6 like Mac OS X) AppleWebKit/535.2 (KHTML, like Gecko) CriOS/52.0.866.0 Mobile/33P812 Safari/535.2",POST,/login,403,3945,32,KP,Attack
+2023-11-15 17:08:15.463,45.22.11.9,"Mozilla/5.0 (Windows 98; Win 9x 4.90) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/36.0.892.0 Safari/535.1",POST,/login,403,326,37,KP,Attack
+2023-11-15 17:08:15.496,45.22.11.9,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/55.0.868.0 Safari/532.0",POST,/login,403,326,32,KP,Attack
+2023-11-15 17:08:15.531,45.22.11.9,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/63.0.853.0 Safari/536.2",POST,/login,403,4491,16,KP,Attack
 2023-11-15 17:08:40.000,16.191.194.219,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_8; rv:1.9.6.20) Gecko/5294-05-17 04:24:36 Firefox/3.8,POST,/login,200,4020,528,PG,Normal
 2023-11-15 17:10:57.000,106.215.143.4,"Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/534.1 (KHTML, like Gecko) CriOS/14.0.841.0 Mobile/08V572 Safari/534.1",POST,/login,200,4832,435,HU,Normal
 2023-11-15 17:13:47.000,111.140.245.54,Mozilla/5.0 (Windows NT 4.0; bho-IN; rv:1.9.0.20) Gecko/8935-05-10 03:00:11 Firefox/3.8,POST,/login,200,3608,578,AF,Normal
@@ -437,6 +427,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 17:22:40.000,168.57.59.183,Mozilla/5.0 (X11; Linux x86_64; rv:1.9.7.20) Gecko/3470-04-15 05:21:54 Firefox/9.0,POST,/login,200,3889,461,TN,Normal
 2023-11-15 17:23:14.000,158.107.17.27,Mozilla/5.0 (Android 12; Mobile; rv:26.0) Gecko/26.0 Firefox/26.0,POST,/login,200,4952,769,AL,Normal
 2023-11-15 17:27:24.000,132.36.232.22,Mozilla/5.0 (X11; Linux i686; rv:1.9.6.20) Gecko/7219-10-05 09:16:53 Firefox/3.8,POST,/login,403,1940,541,FM,Normal
+2023-11-15 17:27:49.061,45.22.11.9,"Mozilla/5.0 (Windows NT 6.0) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/14.0.837.0 Safari/531.0",POST,/login,403,203,49,RU,Attack
+2023-11-15 17:27:49.139,45.22.11.9,curl/7.68.0,POST,/login,403,470,7,RU,Attack
+2023-11-15 17:27:49.226,45.22.11.9,"Mozilla/5.0 (Windows 98; Win 9x 4.90) AppleWebKit/536.0 (KHTML, like Gecko) Chrome/14.0.866.0 Safari/536.0",POST,/login,403,468,16,RU,Attack
+2023-11-15 17:27:49.245,45.22.11.9,"Mozilla/5.0 (iPhone; CPU iPhone OS 15_8_2 like Mac OS X) AppleWebKit/534.0 (KHTML, like Gecko) CriOS/23.0.841.0 Mobile/30P735 Safari/534.0",POST,/login,403,1708,488,RU,Attack
+2023-11-15 17:27:49.276,45.22.11.9,"Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/533.0 (KHTML, like Gecko) CriOS/45.0.837.0 Mobile/55D995 Safari/533.0",POST,/login,403,327,12,RU,Attack
+2023-11-15 17:27:49.323,45.22.11.9,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.2 (KHTML, like Gecko) Chrome/36.0.895.0 Safari/534.2",POST,/login,403,4522,30,RU,Attack
+2023-11-15 17:27:49.360,45.22.11.9,masscan/1.0,POST,/login,403,3396,36,RU,Attack
+2023-11-15 17:27:49.377,45.22.11.9,"Mozilla/5.0 (iPad; CPU iPad OS 17_2_1 like Mac OS X) AppleWebKit/535.2 (KHTML, like Gecko) CriOS/39.0.892.0 Mobile/06Q395 Safari/535.2",POST,/login,403,2949,458,RU,Attack
+2023-11-15 17:27:49.410,45.22.11.9,"Mozilla/5.0 (Windows NT 11.0) AppleWebKit/531.2 (KHTML, like Gecko) Chrome/46.0.830.0 Safari/531.2",POST,/login,200,2309,626,RU,Attack
+2023-11-15 17:27:49.439,45.22.11.9,"Mozilla/5.0 (Linux; Android 4.2.2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/61.0.873.0 Safari/535.1",POST,/login,403,4651,19,RU,Attack
 2023-11-15 17:28:42.000,181.173.131.26,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/531.2 (KHTML, like Gecko) Chrome/21.0.866.0 Safari/531.2",POST,/login,200,4628,512,FJ,Normal
 2023-11-15 17:31:59.000,30.36.7.111,Mozilla/5.0 (Android 4.0.3; Mobile; rv:48.0) Gecko/48.0 Firefox/48.0,POST,/login,403,3801,299,CG,Normal
 2023-11-15 17:35:14.000,193.93.70.187,"Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_10_8) AppleWebKit/534.0 (KHTML, like Gecko) Chrome/24.0.824.0 Safari/534.0",POST,/login,403,3565,561,SM,Normal
@@ -478,6 +478,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 19:18:33.000,56.192.202.245,Mozilla/5.0 (Android 4.4.4; Mobile; rv:31.0) Gecko/31.0 Firefox/31.0,POST,/login,200,2685,138,ES,Normal
 2023-11-15 19:18:47.000,28.110.31.181,"Mozilla/5.0 (iPad; CPU iPad OS 9_3_5 like Mac OS X) AppleWebKit/535.0 (KHTML, like Gecko) FxiOS/15.9l5786.0 Mobile/33X393 Safari/535.0",POST,/login,200,2872,391,NR,Normal
 2023-11-15 19:22:49.000,111.22.114.142,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/531.2 (KHTML, like Gecko) Chrome/54.0.851.0 Safari/531.2",POST,/login,200,3523,237,GD,Normal
+2023-11-15 19:25:34.026,192.168.99.99,"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_5_8) AppleWebKit/531.1 (KHTML, like Gecko) Chrome/19.0.837.0 Safari/531.1",POST,/login,403,4610,40,RU,Attack
+2023-11-15 19:25:34.080,192.168.99.99,Nikto/2.1.6,POST,/login,403,3286,529,RU,Attack
+2023-11-15 19:25:34.157,192.168.99.99,masscan/1.0,POST,/login,403,2622,13,RU,Attack
+2023-11-15 19:25:34.204,192.168.99.99,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_12_6) AppleWebKit/536.1 (KHTML, like Gecko) Chrome/36.0.857.0 Safari/536.1",POST,/login,403,297,30,RU,Attack
+2023-11-15 19:25:34.277,192.168.99.99,masscan/1.0,POST,/login,403,4574,40,RU,Attack
+2023-11-15 19:25:34.336,192.168.99.99,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/17.0.898.0 Safari/536.2",POST,/login,403,2155,42,RU,Attack
+2023-11-15 19:25:34.435,192.168.99.99,"Mozilla/5.0 (Linux; Android 4.1.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/62.0.820.0 Safari/535.1",POST,/login,403,457,38,RU,Attack
+2023-11-15 19:25:34.478,192.168.99.99,"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_1) AppleWebKit/536.0 (KHTML, like Gecko) Chrome/48.0.863.0 Safari/536.0",POST,/login,403,482,329,RU,Attack
+2023-11-15 19:25:34.493,192.168.99.99,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,200,2637,22,RU,Attack
+2023-11-15 19:25:34.509,192.168.99.99,curl/7.68.0,POST,/login,403,1975,455,RU,Attack
 2023-11-15 19:27:17.000,68.46.215.180,Mozilla/5.0 (Windows NT 5.0; zh-HK; rv:1.9.1.20) Gecko/9620-11-07 19:36:43 Firefox/3.6.2,POST,/login,200,1961,438,HR,Normal
 2023-11-15 19:28:50.000,207.143.41.197,"Mozilla/5.0 (iPad; CPU iPad OS 4_2_1 like Mac OS X) AppleWebKit/531.0 (KHTML, like Gecko) CriOS/24.0.817.0 Mobile/26F767 Safari/531.0",POST,/login,200,4443,290,KG,Normal
 2023-11-15 19:29:07.000,137.145.45.190,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_3) AppleWebKit/531.2 (KHTML, like Gecko) Chrome/45.0.835.0 Safari/531.2",POST,/login,200,3825,790,IN,Normal
@@ -493,16 +503,6 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 19:51:54.000,52.45.92.229,"Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) CriOS/22.0.813.0 Mobile/80F656 Safari/536.1",POST,/login,200,3940,183,DK,Normal
 2023-11-15 19:56:33.000,205.225.78.207,"Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/533.0 (KHTML, like Gecko) FxiOS/11.6o2813.0 Mobile/76N808 Safari/533.0",POST,/login,200,1819,677,LB,Normal
 2023-11-15 19:57:40.000,57.84.238.90,Mozilla/5.0 (X11; Linux i686; rv:1.9.7.20) Gecko/2629-04-09 06:31:47 Firefox/3.8,POST,/login,200,3570,307,LR,Normal
-2023-11-15 20:01:45.051,45.22.11.9,Nikto/2.1.6,POST,/login,401,456,29,CN,Attack
-2023-11-15 20:01:45.077,45.22.11.9,"Mozilla/5.0 (X11; Linux i686) AppleWebKit/536.1 (KHTML, like Gecko) Chrome/17.0.889.0 Safari/536.1",POST,/login,401,255,6,CN,Attack
-2023-11-15 20:01:45.103,45.22.11.9,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/531.1 (KHTML, like Gecko) Chrome/48.0.899.0 Safari/531.1",POST,/login,401,456,5,CN,Attack
-2023-11-15 20:01:45.200,45.22.11.9,"Mozilla/5.0 (iPad; CPU iPad OS 16_7_6 like Mac OS X) AppleWebKit/535.2 (KHTML, like Gecko) CriOS/52.0.866.0 Mobile/33P812 Safari/535.2",POST,/login,401,375,32,CN,Attack
-2023-11-15 20:01:45.286,45.22.11.9,Nikto/2.1.6,POST,/login,401,445,23,CN,Attack
-2023-11-15 20:01:45.332,45.22.11.9,Nikto/2.1.6,POST,/login,401,326,44,CN,Attack
-2023-11-15 20:01:45.361,45.22.11.9,curl/7.68.0,POST,/login,401,327,22,CN,Attack
-2023-11-15 20:01:45.385,45.22.11.9,curl/7.68.0,POST,/login,401,419,17,CN,Attack
-2023-11-15 20:01:45.455,45.22.11.9,python-requests/2.28,POST,/login,401,457,44,CN,Attack
-2023-11-15 20:01:45.488,45.22.11.9,"Mozilla/5.0 (Windows 98; Win 9x 4.90) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/36.0.892.0 Safari/535.1",POST,/login,401,276,19,CN,Attack
 2023-11-15 20:02:24.000,220.144.113.235,Mozilla/5.0 (X11; Linux i686; rv:1.9.7.20) Gecko/7814-12-13 00:32:22 Firefox/3.8,POST,/login,200,3631,552,SB,Normal
 2023-11-15 20:03:33.000,201.141.229.190,"Mozilla/5.0 (iPad; CPU iPad OS 17_1_2 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) CriOS/37.0.893.0 Mobile/76P927 Safari/536.1",POST,/login,200,3502,193,DJ,Normal
 2023-11-15 20:08:04.000,87.142.32.157,Mozilla/5.0 (Android 2.2.1; Mobile; rv:24.0) Gecko/24.0 Firefox/24.0,POST,/login,403,2040,625,AT,Normal
@@ -548,16 +548,6 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 22:01:11.000,38.210.28.203,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5; rv:1.9.4.20) Gecko/7768-02-23 14:26:36 Firefox/6.0,POST,/login,200,3833,351,KR,Normal
 2023-11-15 22:05:36.000,170.81.147.54,"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_9_0) AppleWebKit/536.2 (KHTML, like Gecko) Chrome/21.0.808.0 Safari/536.2",POST,/login,200,2882,363,NA,Normal
 2023-11-15 22:09:56.000,6.29.64.3,"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/26.0.893.0 Safari/532.2",POST,/login,200,3509,571,BH,Normal
-2023-11-15 22:10:48.031,192.168.25.1,masscan/1.0,POST,/login,401,315,16,Unknown,Attack
-2023-11-15 22:10:48.050,192.168.25.1,curl/7.68.0,POST,/login,401,463,27,Unknown,Attack
-2023-11-15 22:10:48.066,192.168.25.1,Nikto/2.1.6,POST,/login,401,287,28,Unknown,Attack
-2023-11-15 22:10:48.090,192.168.25.1,curl/7.68.0,POST,/login,401,476,12,Unknown,Attack
-2023-11-15 22:10:48.137,192.168.25.1,"Mozilla/5.0 (iPhone; CPU iPhone OS 15_8_2 like Mac OS X) AppleWebKit/534.0 (KHTML, like Gecko) CriOS/23.0.841.0 Mobile/30P735 Safari/534.0",POST,/login,401,350,21,Unknown,Attack
-2023-11-15 22:10:48.174,192.168.25.1,"Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/533.0 (KHTML, like Gecko) CriOS/45.0.837.0 Mobile/55D995 Safari/533.0",POST,/login,401,491,30,Unknown,Attack
-2023-11-15 22:10:48.211,192.168.25.1,masscan/1.0,POST,/login,401,218,34,Unknown,Attack
-2023-11-15 22:10:48.300,192.168.25.1,python-requests/2.28,POST,/login,401,382,5,Unknown,Attack
-2023-11-15 22:10:48.388,192.168.25.1,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,401,381,11,Unknown,Attack
-2023-11-15 22:10:48.398,192.168.25.1,curl/7.68.0,POST,/login,401,405,27,Unknown,Attack
 2023-11-15 22:11:32.000,28.110.28.30,"Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_8 like Mac OS X) AppleWebKit/532.2 (KHTML, like Gecko) CriOS/57.0.816.0 Mobile/45N269 Safari/532.2",POST,/login,200,2073,659,ER,Normal
 2023-11-15 22:15:52.000,161.235.109.63,Mozilla/5.0 (Android 4.1.2; Mobile; rv:61.0) Gecko/61.0 Firefox/61.0,POST,/login,200,4128,160,MH,Normal
 2023-11-15 22:20:30.000,97.241.48.157,Mozilla/5.0 (Android 4.1.2; Mobile; rv:66.0) Gecko/66.0 Firefox/66.0,POST,/login,200,4850,784,GN,Normal
@@ -578,6 +568,16 @@ timestamp,src_ip,user_agent,http_method,endpoint,status_code,response_bytes,requ
 2023-11-15 22:56:44.000,98.15.205.250,Mozilla/5.0 (Windows NT 6.0; ca-ES; rv:1.9.1.20) Gecko/4812-12-13 08:43:13 Firefox/15.0,POST,/login,200,4303,387,PL,Normal
 2023-11-15 23:01:32.000,203.232.62.24,"Mozilla/5.0 (Linux; Android 4.0.3) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/57.0.848.0 Safari/535.2",POST,/login,403,4983,422,IN,Normal
 2023-11-15 23:01:50.000,179.212.151.19,"Mozilla/5.0 (iPad; CPU iPad OS 11_4_1 like Mac OS X) AppleWebKit/536.1 (KHTML, like Gecko) CriOS/27.0.850.0 Mobile/09T365 Safari/536.1",POST,/login,200,4581,507,QA,Normal
+2023-11-15 23:02:07.020,172.16.0.1,masscan/1.0,POST,/login,403,4004,158,KP,Attack
+2023-11-15 23:02:07.110,172.16.0.1,Mozilla/5.0 (compatible; sqlmap/1.4.7),POST,/login,403,290,116,KP,Attack
+2023-11-15 23:02:07.188,172.16.0.1,masscan/1.0,POST,/login,403,395,21,KP,Attack
+2023-11-15 23:02:07.278,172.16.0.1,masscan/1.0,POST,/login,403,2828,695,KP,Attack
+2023-11-15 23:02:07.368,172.16.0.1,Nikto/2.1.6,POST,/login,403,4474,251,KP,Attack
+2023-11-15 23:02:07.439,172.16.0.1,"Mozilla/5.0 (iPad; CPU iPad OS 9_3_6 like Mac OS X) AppleWebKit/534.1 (KHTML, like Gecko) CriOS/14.0.825.0 Mobile/91N671 Safari/534.1",POST,/login,403,2221,602,KP,Attack
+2023-11-15 23:02:07.472,172.16.0.1,python-requests/2.28,POST,/login,403,401,17,KP,Attack
+2023-11-15 23:02:07.490,172.16.0.1,"Mozilla/5.0 (Linux; Android 4.4.2) AppleWebKit/533.0 (KHTML, like Gecko) Chrome/18.0.813.0 Safari/533.0",POST,/login,403,4142,11,KP,Attack
+2023-11-15 23:02:07.567,172.16.0.1,"Mozilla/5.0 (Windows NT 4.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/52.0.851.0 Safari/535.1",POST,/login,403,1908,121,KP,Attack
+2023-11-15 23:02:07.591,172.16.0.1,python-requests/2.28,POST,/login,403,337,742,KP,Attack
 2023-11-15 23:02:39.000,33.176.37.151,Mozilla/5.0 (Windows 95; yo-NG; rv:1.9.0.20) Gecko/3907-06-26 16:50:56 Firefox/3.8,POST,/login,200,3821,498,CI,Normal
 2023-11-15 23:07:25.000,189.166.4.219,Mozilla/5.0 (Macintosh; PPC Mac OS X 10_11_9; rv:1.9.2.20) Gecko/2409-12-25 18:55:13 Firefox/3.6.7,POST,/login,200,2073,180,JP,Normal
 2023-11-15 23:11:51.000,177.74.122.248,"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_11_0) AppleWebKit/531.0 (KHTML, like Gecko) Chrome/26.0.829.0 Safari/531.0",POST,/login,200,1900,547,PG,Normal
