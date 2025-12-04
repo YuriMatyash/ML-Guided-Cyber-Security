@@ -24,7 +24,7 @@ We work with real threat reports, security logs, network data, and NLP-based thr
 | Lab | Assignment | Solution | Topic | Description |
 |---|---|---|---|---|
 | 1 | [Lab1 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab1) |[Lab1](https://github.com/YuriMatyash/ML-Guided-Cyber-Security/blob/main/Labs/Lab1/lab1.md) | Cyber Threat Intelligence (CTI) Report Mapping to MITRE ATT&CK | Choosing a real-world Cyber Threat Intelligence (CTI) report, analyzing the described attack, and mapping its behaviors to MITRE ATT&CK tactics and techniques.
-| 2 | [Lab2 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab2) |[Lab2](https://github.com/YuriMatyash/ML-Guided-Cyber-Security/blob/main/Labs/Lab1/lab2.ipynb) | Basic Anomaly Detection for Cybersecurity Logs | The goal is to build a small end-to-end anomaly detection pipeline for a cybersecurity-related dataset, analyze it, and visualize the detected anomalies in 2D. |
+| 2 | [Lab2 assignment](https://github.com/melofon/HIT-ai-cybersecurity-labs/tree/main/labs/lab2) |[Lab2](https://github.com/YuriMatyash/ML-Guided-Cyber-Security/blob/main/Labs/Lab1/lab2.ipynb) | Basic Anomaly Detection for Cybersecurity Logs | The goal is to build a two small end-to-end anomaly detection pipelines(isolation tree and auto-encoder) for a cybersecurity-related dataset, compare the two models, analyze them, and visualize the detected anomalies in 2D. |
 
 
 ## 📂 Repository Files Architecture  
