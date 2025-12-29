@@ -1,0 +1,22 @@
+services:
+  devui:
+    image: cybersec-agent-devui
+    container_name: cybersec-agent-devui
+    working_dir: /app
+
+    volumes:
+      - .:/app
+
+    ports:
+      - "8080:8080"
+
+    env_file:
+      - .env
+
+    environment:
+      API_BASE_URL: "https://openrouter.ai/api/v1"
+      MODEL: "alibaba/tongyi-deepresearch-30b-a3b:free"
+      ENABLE_OTEL: true
+      AGENT_NAME: "LARS-fleet-server"
+
+    command: ["uv", "run", "devui", "./app", "--host", "0.0.0.0", "--port", "8080"]
