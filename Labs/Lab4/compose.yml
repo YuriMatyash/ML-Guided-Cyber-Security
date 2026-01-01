@@ -15,8 +15,8 @@ services:
       - .env
 
     environment:
-      API_BASE_URL: "https://openrouter.ai/api/v1"
-      MODEL: "z-ai/glm-4.5-air:free"
+      API_BASE_URL: "https://api.groq.com/openai/v1"
+      MODEL: model_id="qwen/qwen3-32b"
       ENABLE_OTEL: true
       AGENT_NAME: "LARS-fleet-server"
 
