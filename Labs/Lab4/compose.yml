@@ -6,6 +6,7 @@ services:
 
     volumes:
       - .:/app
+      - /app/.venv
 
     ports:
       - "8080:8080"
@@ -15,8 +16,8 @@ services:
 
     environment:
       API_BASE_URL: "https://openrouter.ai/api/v1"
-      MODEL: "alibaba/tongyi-deepresearch-30b-a3b:free"
+      MODEL: "z-ai/glm-4.5-air:free"
       ENABLE_OTEL: true
       AGENT_NAME: "LARS-fleet-server"
 
-    command: ["uv", "run", "devui", "./app", "--host", "0.0.0.0", "--port", "8080"]
+    command: ["uv", "run", "devui", "/app", "--host", "0.0.0.0", "--port", "8080"]

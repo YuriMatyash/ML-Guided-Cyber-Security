@@ -12,7 +12,7 @@ from agent_framework.openai import OpenAIChatClient
 # We load these from the .env file for security
 base_url = os.getenv("API_BASE_URL", "https://openrouter.ai/api/v1")
 api_key = os.getenv("API_KEY")
-model_id = os.getenv("MODEL", "google/gemini-2.0-flash-exp:free")
+model_id = os.getenv("MODEL", "z-ai/glm-4.5-air:free")
 
 if not api_key:
     print("CRITICAL WARNING: API_KEY is missing. Check your .env file.")
@@ -65,7 +65,12 @@ agent = ChatAgent(
         2. Translate that text into English.
         3. Use the tool 'make_random_ascii_art' with the English translation.
         
-        Do not output the plain text translation. Only output the result of the tool.
+        IMPORTANT:
+        When outputting the result, you MUST wrap the ASCII art in a Markdown code block (using triple backticks) so it renders correctly. 
+        Example format:
+        ```
+        (art goes here)
+        ```
     """,
     tools=[make_random_ascii_art],
 )
