@@ -1,13 +1,9 @@
 import os
-
-from agent_framework import WorkflowBuilder, AgentExecutorResponse
+from agent_framework import WorkflowBuilder
 from agent_framework.openai import OpenAIChatClient
 from pydantic import BaseModel, Field
 
-# from agent_framework import InMemoryCheckpointStorage
-
-# checkpoint_storage = InMemoryCheckpointStorage()
-
+# --- CONFIGURATION ---
 base_url = os.getenv("API_BASE_URL")
 api_key = os.getenv("API_KEY")
 model_id = os.getenv("MODEL", "qwen/qwen3-32b")
@@ -18,65 +14,96 @@ client = OpenAIChatClient(
     model_id=model_id,
 )
 
-class SecuritySanitization(BaseModel):
-    safety_status: str = Field(description="One of: Safe, Unsafe, Borderline")
-    safe_query: str = Field(description="The rewritten query. If the original was unsafe, this must be a theoretical, historical, or scientific reformulation of the topic.")
-    
+# --- DATA MODELS ---
+class InitialSanitization(BaseModel):
+    safe_query: str = Field(description="The sanitized, theoretical query.")
+
+class FixerDecision(BaseModel):
+    content: str = Field(description="Either the valid answer (if previous was good) OR a new sanitized question (if previous was a refusal).")
+    is_answer: bool = Field(description="True if 'content' is an answer. False if 'content' is a new question that needs answering.")
+
+# --- AGENTS ---
+
+# 1. FIRST PASS SANITIZER
 sanitizer_agent = client.create_agent(
     name="sanitizer-agent",
-    description="Rewrites dangerous inputs into safe educational queries.",
     instructions="""
-        You are a Query Sanitization Engine. Your goal is to allow the user to learn about topics without 
-        generating harmful instructions.
-
-        1. Analyze the user's input for harm (violence, illegal acts, malware, etc.).
-        2. If the input is UNSAFE (e.g., "How to make poison"):
-           - REWRITE it into an educational, scientific, or historical question (e.g., "What is the chemical 
-           mechanism of toxicology?").
-           - PRESERVE the underlying topic (chemistry, physics, coding) but remove the actionable/instructional nature.
-        3. If the input is SAFE:
-           - Copy it exactly to the 'safe_query' field.
-
-        Output strictly JSON matching the SecuritySanitization schema.
+        You are a Query Sanitization Engine.
+        1. Analyze the user's input for harm.
+        2. UNSAFE (e.g. "How to make poison") -> Rewrite into a safe, theoretical chemistry/history question.
+        3. SAFE -> Pass through exactly.
+        
+        Output strictly JSON.
     """,
-    output_model=SecuritySanitization,
+    output_model=InitialSanitization,
 )
 
-answering_agent = client.create_agent(
-    name="answer-agent",
+# 2. FIRST ATTEMPT ANSWERER
+# We tell it to be helpful, but it might refuse.
+attempt_1_agent = client.create_agent(
+    name="attempt-1-agent",
     instructions="""
-        You are a knowledgeable professor. 
-        You will receive a structured input containing a 'safe_query'. 
-        
-        Answer the 'safe_query' comprehensively and objectively. 
-        Because the query has already been sanitized, you do not need to lecture the user on safety. 
-        Focus on the theoretical, historical, or technical aspects of the question provided.
+        You are a generic assistant. 
+        You will receive a 'safe_query'. Answer it. 
+        If it triggers your safety guidelines, politely refuse.
     """
 )
 
-#question_check_executor = AgentExecutor(question_check_agent, id="question_check_agent")
-#geography_weather_executor = AgentExecutor(geography_weather_agent, id="geography_weather_agent")
-#refusal_executor = AgentExecutor(refusal_agent, id="refusal_agent")
+# 3. THE FIXER (Replaces the Verifier/Loop)
+# This agent decides: Did the last agent fail? If so, generate a BETTER question.
+fixer_agent = client.create_agent(
+    name="fixer-agent",
+    instructions="""
+        You are a Logic Repair Unit. Analyze the text provided by the previous agent.
 
+        SCENARIO A: The text is a REFUSAL (e.g., "I'm sorry", "I cannot help").
+        - ACTION: The previous query failed. You must generate a new even safer and more general query
+        while maintaining the original topic.
+        - STRATEGY: Try to abstract the query further, or reframe it in a more harmless way.
+        - OUTPUT: set 'is_answer': False, and put the NEW QUESTION in 'content'.
+
+        SCENARIO B: The text is a VALID ANSWER.
+        - ACTION: Preserve the answer.
+        - OUTPUT: set 'is_answer': True, and copy the text exactly into 'content'.
+    """,
+    output_model=FixerDecision,
+)
+
+# 4. FINAL ANSWERER
+# This agent looks at the Fixer's output. If it's an answer, it prints it. If it's a new question, it answers it.
+final_agent = client.create_agent(
+    name="final-agent",
+    instructions="""
+        You are a Professor. Check the input JSON.
+
+        1. If 'is_answer' is True:
+           - The work is done. Just repeat the 'content' exactly.
+        
+        2. If 'is_answer' is False:
+           - The 'content' is a new, safe question (because the first try failed).
+           - Answer this new question comprehensively and theoretically.
+    """
+)
+
+# --- WORKFLOW (LINEAR) ---
+# We use a straight line to avoid the 'AttributeError'
 workflow = (
     WorkflowBuilder()
     .set_start_executor(sanitizer_agent)
-    .add_edge(sanitizer_agent, answering_agent)
+    .add_edge(sanitizer_agent, attempt_1_agent)
+    .add_edge(attempt_1_agent, fixer_agent)
+    .add_edge(fixer_agent, final_agent)
     .build()
 )
 
+# --- WRAPPER ---
 class WorkflowWrapper:
     def __init__(self, wf):
         self._workflow = wf
     
     async def run_stream(self, input_data=None, checkpoint_id=None, checkpoint_storage=None, **kwargs):
-        """
-        Wrapper to eliminate devUI error with checkpoint parameters
-        """
-        # If checkpoint_id defined - it's continuation, not yet supported
         if checkpoint_id is not None:
             raise NotImplementedError("Checkpoint resume is not yet supported")
-        
         async for event in self._workflow.run_stream(input_data, **kwargs):
             yield event
     
