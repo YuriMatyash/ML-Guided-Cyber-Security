@@ -1,0 +1,13 @@
+[project]
+name = "maf-openrouter-demo"
+version = "0.1.0"
+description = "Demo: Microsoft Agent Framework + OpenRouter (OpenAI-compatible API)"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "agent-framework>=1.0.0b0",
+    "agent-framework-devui>=1.0.0b0",
+    "openai>=1.50.0",
+    "cowsay",
+]
