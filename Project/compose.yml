@@ -16,7 +16,7 @@ services:
 
     environment:
       API_BASE_URL: "https://api.groq.com/openai/v1"
-      MODEL: model_id="qwen/qwen3-32b"
+      MODEL: model_id="qwen-2.5-32b"
       ENABLE_OTEL: true
       AGENT_NAME: "LARS-fleet-server"
 
