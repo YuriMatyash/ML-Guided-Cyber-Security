@@ -4,6 +4,8 @@ WORKDIR /app
 COPY pyproject.toml uv.lock* ./
 RUN uv sync --frozen --no-dev
 
+RUN uv pip install "dask[distributed]"
+
 # Копируем код приложения
 #COPY . .
 
