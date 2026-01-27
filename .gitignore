@@ -3,3 +3,4 @@ __pycache__/
 .env
 .venv
 .deepeval
+uv.lock/
