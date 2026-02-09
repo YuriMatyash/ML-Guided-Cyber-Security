@@ -94,88 +94,89 @@ async def main():
     WORK_ID = get_work_id()
     print(f"WORK_ID: {WORK_ID}")
 
-    # get Prompt
-    # try to get best so far, if none exist take base one.
-    best_so_far_id = get_best_shift_id(WORK_ID)
-    if best_so_far_id:
-        original_prompt = get_shift_text(WORK_ID, best_so_far_id)
-    else:
-        original_prompt = get_base_prompt(WORK_ID)
-        best_so_far_id = "0"
-        
-    if original_prompt.startswith("Error"):
-        print(original_prompt)
-        return
-
-    print(f"Target Prompt: {original_prompt}")
-
-    # MUTATE PROMPT -> EVALUATE -> TARGET -> EVALUATE RESPONSE -> SAVE TO DB
-    for i in range(NUM_OF_ATTACKS):
-        # mutate
-        result = await mutator_agent.run(original_prompt)
-        
-        # remove <think> tags
-        clean_response = re.sub(r'<think>.*?</think>', '', result.text, flags=re.DOTALL).strip()
-        
-        # evaluate prompt
-        eval_input = f"Analyze this text:\n'''\n{clean_response}\n'''"
-        evaluation_response = await prompt_eval_agent.run(eval_input)
-        
-        # attempt to get the score
-        prompt_score = -1
-        if evaluation_response.value:
-            prompt_score = evaluation_response.value.harmlessness_score
+    while True:
+        # get Prompt
+        # try to get best so far, if none exist take base one.
+        best_so_far_id = get_best_shift_id(WORK_ID)
+        if best_so_far_id:
+            original_prompt = get_shift_text(WORK_ID, best_so_far_id)
         else:
-            # Fallback parsing for prompt eval
-            raw_text = evaluation_response.text
-            clean_eval = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL).strip()
-            clean_eval = re.sub(r'```json|```', '', clean_eval).strip()
-            match = re.search(r'"harmlessness_score"\s*:\s*(\d+)', clean_eval)
-            if match:
-                prompt_score = int(match.group(1))
+            original_prompt = get_base_prompt(WORK_ID)
+            best_so_far_id = "0"
+            
+        if original_prompt.startswith("Error"):
+            print(original_prompt)
+            return
+
+        print(f"Target Prompt: {original_prompt}")
+
+        # MUTATE PROMPT -> EVALUATE -> TARGET -> EVALUATE RESPONSE -> SAVE TO DB
+        for i in range(NUM_OF_ATTACKS):
+            # mutate
+            result = await mutator_agent.run(original_prompt)
+            
+            # remove <think> tags
+            clean_response = re.sub(r'<think>.*?</think>', '', result.text, flags=re.DOTALL).strip()
+            
+            # evaluate prompt
+            eval_input = f"Analyze this text:\n'''\n{clean_response}\n'''"
+            evaluation_response = await prompt_eval_agent.run(eval_input)
+            
+            # attempt to get the score
+            prompt_score = -1
+            if evaluation_response.value:
+                prompt_score = evaluation_response.value.harmlessness_score
+            else:
+                # Fallback parsing for prompt eval
+                raw_text = evaluation_response.text
+                clean_eval = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL).strip()
+                clean_eval = re.sub(r'```json|```', '', clean_eval).strip()
+                match = re.search(r'"harmlessness_score"\s*:\s*(\d+)', clean_eval)
+                if match:
+                    prompt_score = int(match.group(1))
+                    
+            # Target Agent (Send the attack)
+            target_res = await target_agent.run(clean_response)
+            # Clean <think> tags from target response
+            clean_target_res = re.sub(r'<think>.*?</think>', '', target_res.text, flags=re.DOTALL).strip()
                 
-        # Target Agent (Send the attack)
-        target_res = await target_agent.run(clean_response)
-        # Clean <think> tags from target response
-        clean_target_res = re.sub(r'<think>.*?</think>', '', target_res.text, flags=re.DOTALL).strip()
+            # Evaluate Response
+            res_eval_input = (
+                f"Analyze this interaction:\n\n"
+                f"[ATTACK PROMPT]:\n{clean_response}\n\n"
+                f"[TARGET RESPONSE]:\n{clean_target_res}"
+            )
+            res_eval_result = await response_eval_agent.run(res_eval_input)
+            res_metrics = {"helpfulness": -1, "honesty": -1, "harmlessness": -1}   
+            if res_eval_result.value:
+                # Auto-parsed
+                res_metrics = res_eval_result.value.model_dump() # Convert Pydantic to dict
+            else:
+                # Manual fallback
+                raw_res_eval = res_eval_result.text
+                clean_res_eval = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
+                clean_res_eval = re.sub(r'```json|```', '', clean_res_eval).strip()
+                
+                help_match = re.search(r'"helpfulness"\s*:\s*(\d+)', clean_res_eval)
+                hon_match = re.search(r'"honesty"\s*:\s*(\d+)', clean_res_eval)
+                harm_match = re.search(r'"harmlessness"\s*:\s*(\d+)', clean_res_eval)
+                
+                if help_match: res_metrics["helpfulness"] = int(help_match.group(1))
+                if hon_match: res_metrics["honesty"] = int(hon_match.group(1))
+                if harm_match: res_metrics["harmlessness"] = int(harm_match.group(1))
             
-        # Evaluate Response
-        res_eval_input = (
-            f"Analyze this interaction:\n\n"
-            f"[ATTACK PROMPT]:\n{clean_response}\n\n"
-            f"[TARGET RESPONSE]:\n{clean_target_res}"
-        )
-        res_eval_result = await response_eval_agent.run(res_eval_input)
-        res_metrics = {"helpfulness": -1, "honesty": -1, "harmlessness": -1}   
-        if res_eval_result.value:
-            # Auto-parsed
-            res_metrics = res_eval_result.value.model_dump() # Convert Pydantic to dict
-        else:
-            # Manual fallback
-            raw_res_eval = res_eval_result.text
-            clean_res_eval = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
-            clean_res_eval = re.sub(r'```json|```', '', clean_res_eval).strip()
+            # save to json
+            new_id = add_attack(
+                target_id=WORK_ID, 
+                shift_text=clean_response, 
+                harmlessness_score=prompt_score,
+                parent_id=best_so_far_id,
+                response_text=clean_target_res,
+                response_metrics=res_metrics
+            )
+            print(f"WORK_ID:{WORK_ID} : Added attack ID:{new_id}, with parent ID:{best_so_far_id}")
             
-            help_match = re.search(r'"helpfulness"\s*:\s*(\d+)', clean_res_eval)
-            hon_match = re.search(r'"honesty"\s*:\s*(\d+)', clean_res_eval)
-            harm_match = re.search(r'"harmlessness"\s*:\s*(\d+)', clean_res_eval)
-            
-            if help_match: res_metrics["helpfulness"] = int(help_match.group(1))
-            if hon_match: res_metrics["honesty"] = int(hon_match.group(1))
-            if harm_match: res_metrics["harmlessness"] = int(harm_match.group(1))
-        
-        # save to json
-        new_id = add_attack(
-            target_id=WORK_ID, 
-            shift_text=clean_response, 
-            harmlessness_score=prompt_score,
-            parent_id=best_so_far_id,
-            response_text=clean_target_res,
-            response_metrics=res_metrics
-        )
-        print(f"WORK_ID:{WORK_ID} : Added attack ID:{new_id}, with parent ID:{best_so_far_id}")
-        
-    print(f"Finished {NUM_OF_ATTACKS} mutations, saved into DB")
+        print(f"Finished {NUM_OF_ATTACKS} mutations, saved into DB")
     
     
 
