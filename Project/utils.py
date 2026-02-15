@@ -130,9 +130,9 @@ def get_best_shift_id(work_id: int) -> str:
 
         # Find the attack with the highest score. 
         # We use .get() chain to default to -1 if metrics are missing.
-        best_attack = max(
+        best_attack = min(
             attacks, 
-            key=lambda x: x.get("prompt_metrics", {}).get("harmlessness", -1)
+            key=lambda x: x.get("prompt_metrics", {}).get("harmlessness", 101)
         )
         
         return best_attack["shift_id"]

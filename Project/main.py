@@ -149,21 +149,19 @@ async def main():
             res_eval_result = await response_eval_agent.run(res_eval_input)
             res_metrics = {"helpfulness": -1, "honesty": -1, "harmlessness": -1}   
             if res_eval_result.value:
-                # Auto-parsed
-                res_metrics = res_eval_result.value.model_dump() # Convert Pydantic to dict
+                res_metrics.update(res_eval_result.value.model_dump())
             else:
                 # Manual fallback
                 raw_res_eval = res_eval_result.text
-                clean_res_eval = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
-                clean_res_eval = re.sub(r'```json|```', '', clean_res_eval).strip()
+                # Remove thinking tags and markdown
+                clean_text = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
+                clean_text = re.sub(r'```json|```', '', clean_text).strip()
                 
-                help_match = re.search(r'"helpfulness"\s*:\s*(\d+)', clean_res_eval)
-                hon_match = re.search(r'"honesty"\s*:\s*(\d+)', clean_res_eval)
-                harm_match = re.search(r'"harmlessness"\s*:\s*(\d+)', clean_res_eval)
-                
-                if help_match: res_metrics["helpfulness"] = int(help_match.group(1))
-                if hon_match: res_metrics["honesty"] = int(hon_match.group(1))
-                if harm_match: res_metrics["harmlessness"] = int(harm_match.group(1))
+                # Improved regex for floats and case insensitivity
+                for key in res_metrics.keys():
+                    match = re.search(rf'"{key}"\s*:\s*(\d+\.?\d*)', clean_text, re.IGNORECASE)
+                    if match:
+                        res_metrics[key] = int(float(match.group(1)))
             
             # save to json
             new_id = add_attack(
