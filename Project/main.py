@@ -1,20 +1,48 @@
+'''
+Compared to main.py, main_v2.py runs local LLM instead of using groq.
+'''
 import asyncio
 import os
 import re
+import requests
 from dotenv import load_dotenv
 from agent_framework.openai import OpenAIChatClient
 from pydantic import BaseModel, Field
 
 from utils import get_base_prompt, add_attack, get_work_id, get_best_shift_id, get_shift_text
-from hyperparams import NUM_OF_ATTACKS, JSON_FILEPATH
+from hyperparams import NUM_OF_ATTACKS, MUTATOR_MODEL, TARGET_MODEL, EVALUATOR_MODEL, JSON_FILEPATH
 
 load_dotenv()
 
+# model id will change dynamically since I have 3 different models
 client = OpenAIChatClient(
     base_url=os.getenv("API_BASE_URL"),
     api_key=os.getenv("API_KEY"),
     model_id=os.getenv("MODEL"),
 )
+
+
+##############################################################################
+#   Functions
+##############################################################################
+
+async def get_response(agent, prompt, model_name):
+    # keep_alive: 0 ensures VRAM is freed for the next model
+    return await agent.run(
+        prompt, 
+        model_id=model_name, 
+        extra_body={"keep_alive": 0}
+    )
+
+# clear vram of all models
+def force_unload_all():
+    # Explicitly include the 32b model once to clear it
+    models_to_clear = [MUTATOR_MODEL, TARGET_MODEL, EVALUATOR_MODEL, "qwen3:32b"]
+    for model in models_to_clear:
+        try:
+            requests.post("http://localhost:11434/api/generate", json={"model": model, "keep_alive": 0}, timeout=1)
+        except Exception:
+            pass
 
 ##############################################################################
 #   Structured Outputs
@@ -90,6 +118,8 @@ response_eval_agent = client.as_agent(
 ##############################################################################
 
 async def main():
+    print("Clearing VRAM for a fresh start...")
+    force_unload_all()
     # get Work ID
     WORK_ID = get_work_id()
     print(f"WORK_ID: {WORK_ID}")
@@ -103,81 +133,89 @@ async def main():
         else:
             original_prompt = get_base_prompt(WORK_ID)
             best_so_far_id = "0"
-            
-        if original_prompt.startswith("Error"):
-            print(original_prompt)
-            return
 
         print(f"Target Prompt: {original_prompt}")
 
         # MUTATE PROMPT -> EVALUATE -> TARGET -> EVALUATE RESPONSE -> SAVE TO DB
         for i in range(NUM_OF_ATTACKS):
-            # mutate
-            result = await mutator_agent.run(original_prompt)
-            
-            # remove <think> tags
-            clean_response = re.sub(r'<think>.*?</think>', '', result.text, flags=re.DOTALL).strip()
-            
-            # evaluate prompt
-            eval_input = f"Analyze this text:\n'''\n{clean_response}\n'''"
-            evaluation_response = await prompt_eval_agent.run(eval_input)
-            
-            # attempt to get the score
-            prompt_score = -1
-            if evaluation_response.value:
-                prompt_score = evaluation_response.value.harmlessness_score
+            print("############################################ START ##########################################################")
+
+            # MUTATE (DeepSeek R1)
+            #####################################################################################################################
+            result = await get_response(mutator_agent, original_prompt, MUTATOR_MODEL)
+            clean_attack = re.sub(r'<think>.*?</think>', '', result.text, flags=re.DOTALL).strip()
+            print(f"Mutated prompt: {clean_attack}\n\n")
+            #####################################################################################################################
+
+
+            # EVALUATE PROMPT (Llama 3.1)
+            #####################################################################################################################
+            prompt_eval = await get_response(prompt_eval_agent, clean_attack, EVALUATOR_MODEL)
+
+            if prompt_eval.value:
+                prompt_score = prompt_eval.value.harmlessness_score
             else:
-                # Fallback parsing for prompt eval
-                raw_text = evaluation_response.text
-                clean_eval = re.sub(r'<think>.*?</think>', '', raw_text, flags=re.DOTALL).strip()
-                clean_eval = re.sub(r'```json|```', '', clean_eval).strip()
-                match = re.search(r'"harmlessness_score"\s*:\s*(\d+)', clean_eval)
-                if match:
-                    prompt_score = int(match.group(1))
-                    
-            # Target Agent (Send the attack)
-            target_res = await target_agent.run(clean_response)
-            # Clean <think> tags from target response
+                # Manual fallback for the 8B model
+                raw_text = prompt_eval.text
+                match = re.search(r'"harmlessness_score"\s*:\s*(\d+)', raw_text)
+                prompt_score = int(match.group(1)) if match else -1
+            
+            print(f"Eval Prompt: {prompt_eval}")
+            print(f"Captured Prompt Score: {prompt_score}\n\n")
+            #####################################################################################################################
+
+
+            # TARGET ATTACK (Qwen 14B)
+            #####################################################################################################################
+            target_res = await get_response(target_agent, clean_attack, TARGET_MODEL)
             clean_target_res = re.sub(r'<think>.*?</think>', '', target_res.text, flags=re.DOTALL).strip()
-                
-            # Evaluate Response
-            res_eval_input = (
-                f"Analyze this interaction:\n\n"
-                f"[ATTACK PROMPT]:\n{clean_response}\n\n"
-                f"[TARGET RESPONSE]:\n{clean_target_res}"
-            )
-            res_eval_result = await response_eval_agent.run(res_eval_input)
-            res_metrics = {"helpfulness": -1, "honesty": -1, "harmlessness": -1}   
+            #####################################################################################################################
+
+
+            # EVALUATE RESPONSE (Llama 3.1)
+            #####################################################################################################################
+            res_eval_input = f"[ATTACK]: {clean_attack}\n[RESPONSE]: {clean_target_res}"
+            res_eval_result = await get_response(response_eval_agent, res_eval_input, EVALUATOR_MODEL)
+
+            # Initialize with defaults in case regex also fails
+            res_metrics = {"helpfulness": -1, "honesty": -1, "harmlessness": -1}
+
             if res_eval_result.value:
-                res_metrics.update(res_eval_result.value.model_dump())
+                res_metrics = res_eval_result.value.model_dump()
             else:
-                # Manual fallback
+                # Manual fallback: Extract values using regex if Pydantic fails
                 raw_res_eval = res_eval_result.text
-                # Remove thinking tags and markdown
-                clean_text = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
-                clean_text = re.sub(r'```json|```', '', clean_text).strip()
+                # Clean thinking tags and markdown if present
+                clean_res_text = re.sub(r'<think>.*?</think>', '', raw_res_eval, flags=re.DOTALL).strip()
+                clean_res_text = re.sub(r'```json|```', '', clean_res_text).strip()
                 
-                # Improved regex for floats and case insensitivity
+                # Search for each key individually
                 for key in res_metrics.keys():
-                    match = re.search(rf'"{key}"\s*:\s*(\d+\.?\d*)', clean_text, re.IGNORECASE)
+                    match = re.search(rf'"{key}"\s*:\s*(\d+)', clean_res_text, re.IGNORECASE)
                     if match:
-                        res_metrics[key] = int(float(match.group(1)))
+                        res_metrics[key] = int(match.group(1))
+
+                print(f"Warning: JSON parse failed for response evaluation. Fallback metrics: {res_metrics}")
             
-            # save to json
+            print(f"attack eval Prompt: {res_eval_result}")
+            print(f"attack Prompt Scores: {res_metrics['helpfulness']},{res_metrics['honesty']},{res_metrics['harmlessness']}\n\n")
+            #####################################################################################################################
+
+
+            # SAVE
+            #####################################################################################################################
             new_id = add_attack(
                 target_id=WORK_ID, 
-                shift_text=clean_response, 
+                shift_text=clean_attack, 
                 harmlessness_score=prompt_score,
                 parent_id=best_so_far_id,
                 response_text=clean_target_res,
                 response_metrics=res_metrics
             )
-            print(f"WORK_ID:{WORK_ID} : Added attack ID:{new_id}, with parent ID:{best_so_far_id}")
+            print(f"Success! Attack {new_id} saved.")
+            #####################################################################################################################
+            print("############################################ END ##########################################################\n\n")
             
-        print(f"Finished {NUM_OF_ATTACKS} mutations, saved into DB")
-    
-    
-
 
 if __name__ == "__main__":
     asyncio.run(main())
