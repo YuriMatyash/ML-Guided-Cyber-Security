@@ -106,5 +106,6 @@ def generate_plots(work_id):
     plt.show()
 
 if __name__ == "__main__":
-    wid = input("Enter WORK_ID: ")
-    generate_plots(int(wid))
+    while True:
+        wid = input("Enter WORK_ID: ")
+        generate_plots(int(wid))

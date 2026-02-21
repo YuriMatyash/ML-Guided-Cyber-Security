@@ -1,0 +1,17 @@
+name: agent_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - graphviz
+  - pydot
+  - networkx
+  - matplotlib
+  - numpy
+  - requests
+  - python-dotenv
+  - pydantic
+  - pip
+  - pip:
+      - openai
